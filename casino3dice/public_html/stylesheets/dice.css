@@ -1,0 +1,70 @@
+.center_field {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    color: transparent;
+}
+
+/*.center_field * {
+    position: relative;
+    font-family: Trebuchet MS;
+    background-color: transparent;
+    padding: 0px 0px;
+    
+}
+*/
+
+.center_field br {
+      background-color: transparent;
+
+}
+
+.bottom_field {
+    position: absolute;
+    text-align: center;
+    bottom: 5px;
+    width: inherit;
+    padding: 0px;
+}
+
+#label {
+    font-size: 32pt;
+    word-spacing: 0.5em;
+    padding: 5px 15px;
+    color: rgba(21, 26, 26, 0.6);
+    top: 45%;
+}
+
+#labelhelp {
+    font-size: 12pt;
+    padding: 5px 15px;
+    color: rgba(21, 26, 26, 0.5);
+    bottom: 50px;
+}
+
+#set {
+        background-color: transparent;
+}
+
+
+#selector_div button {
+    font-size: 20pt;
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    width: 5em;
+    top: 62%;
+}
+
+.dice_place {
+    position: absolute;
+    border:none;
+}
+#rollbutton{
+    position:absolute;
+    top:500px;
+    left:550px;
+    visibility:hidden;
+}

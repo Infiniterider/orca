@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" href="stylesheets/dice.css" type="text/css"/>
+    <link rel="stylesheet" href="stylesheets/main.css" type="text/css"/>
+    <link rel="stylesheet" href="stylesheets/table.css" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Dice roller</title>
+
+<style type="text/css">@import "stylesheets/main.css";</style>
+<style type="text/css">@import "stylesheets/dice.css";</style>
+<style type="text/css">@import "stylesheets/table.css";</style>
+
+
+
+</head>
+
+    <body style="margin: 0" >
+        <script>
+            <!--facebook script-->
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '139922936583042',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+
+    // ADD ADDITIONAL FACEBOOK CODE HERE
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+    
+    <div id="selector_div" style="display: none">
+        <div class="center_field">
+          
+        </div>
+        
+    </div>
+        <div class="center_field">
+           <!-- <input type="text" id="seth" value="3d6" style="display:none"></input><br/>-->
+            <!--<button id="clear">clear</button>-->
+            <input type="image" src="images/rolldicebutton.png" alt = "roll dice" id="throw" class="rollbutton"/>
+                    
+            <span id="label"></span>
+       
+        </div>
+    
+       <div id="canvas"></div>
+       
+    <script src="scripts/libs/three.min.js"></script>
+    <script src="scripts/libs/cannon.min.js"></script>
+  <!--  <script type="text/javascript" src="https://drive.google.com/uc?id=0ByGeV2TiysmOelhLSnlUQ3ZMc2M"></script>
+    <script type="text/javascript" src="https://drive.google.com/uc?id=0ByGeV2TiysmOczhfWW90OEV0dmM"></script>
+-->
+    <script src="scripts/background/background.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/tablefunctions.js"></script>
+    <script type="text/javascript" src="scripts/teal.js"></script>
+    <script type="text/javascript" src="scripts/dice.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+
+    
+        <script type="text/javascript" defer="defer">       
+     function initDice(){dice_initialize(document.body);}
+    </script>
+    <script type="text/javascript">
+                initDice();
+                </script>
+</body>
+</html>
+

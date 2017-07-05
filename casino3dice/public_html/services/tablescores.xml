@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ CONFIDENTIAL
+ Unpublished Copyright (c) 2012 Louis DiGioia, All Rights Reserved.
+ 
+ NOTICE: All information contained herein is, and remains the property
+ of Louis DiGioia. The intellectual and technical concepts contained
+ herein are proprietary to Louis DiGioia and may be covered by U.S. and
+ Foreign Patents, patents in process, and are protected by trade secret
+ or copyright law. Dissemination of this information or reproduction of
+ this material is strictly forbidden unless prior written permission is
+ obtained from Louis DiGioia.  Access to the source code contained herein
+ is hereby forbidden to anyone except current Louis DiGioia employees,
+ managers or contractors who have executed Confidentiality and
+ Non-disclosure agreements explicitly covering such access.
+ 
+ The copyright notice above does not evidence any actual or intended
+ publication or disclosure of this source code, which includes
+ information that is confidential and/or proprietary, and is a trade
+ secret, of Louis DiGioia.  ANY REPRODUCTION, MODIFICATION, DISTRIBUTION,
+ PUBLIC PERFORMANCE, OR PUBLIC DISPLAY OF OR THROUGH USE OF THIS SOURCE
+ CODE WITHOUT THE EXPRESS WRITTEN CONSENT OF LOUIS DIGIOIA IS STRICTLY
+ PROHIBITED, AND IN VIOLATION OF APPLICABLE LAWS AND INTERNATIONAL
+ TREATIES.  THE RECEIPT OR POSSESSION OF THIS SOURCE CODE AND/OR
+ RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS TO REPRODUCE,
+ DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL
+ ANYTHING THAT IT MAY DESCRIBE, IN WHOLE OR IN PART.
+-->
+
+
+<root>
+    
+<table>
+  <wager>
+    <id>PAIR_1</id>
+    <condition>dice[0] == 1 &amp;&amp; dice[1] == 1 || dice[1] == 1 &amp;&amp; dice[2] == 1</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 1.</description>
+
+      <bounds>0,30,60,60</bounds>
+      <pips>1</pips>
+
+  </wager>
+  <wager>
+    <id>PAIR_2</id>
+    <condition>dice[0] == 2 &amp;&amp; dice[1] == 2 || dice[1] == 2 &amp;&amp; dice[2] == 2</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 2.</description>
+    <region>
+      <bounds>0,90,60,60</bounds>
+      <pips>2</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>PAIR_3</id>
+    <condition>dice[0] == 3 &amp;&amp; dice[1] == 3 || dice[1] == 3 &amp;&amp; dice[2] == 3</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 3.</description>
+    <region>
+      <bounds>0,150,60,60</bounds>
+      <pips>3</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>PAIR_4</id>
+    <condition>dice[0] == 4 &amp;&amp; dice[1] == 4 || dice[1] == 4 &amp;&amp; dice[2] == 4</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 4.</description>
+    <region>
+      <bounds>60,30,60,60</bounds>
+      <pips>4</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>PAIR_5</id>
+    <condition>dice[0] == 5 &amp;&amp; dice[1] == 5 || dice[1] == 5 &amp;&amp; dice[2] == 5</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 5.</description>
+    <region>
+      <bounds>60,90,60,60</bounds>
+      <pips>5</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>PAIR_6</id>
+    <condition>dice[0] == 6 &amp;&amp; dice[1] == 6 || dice[1] == 6 &amp;&amp; dice[2] == 6</condition>
+    <odds>10</odds>
+    <probability>0.074</probability>
+    <edge>0.185</edge>
+    <description>Wins if at least 2 dice roll a 6.</description>
+    <region>
+      <bounds>60,150,60,60</bounds>
+      <pips>6</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>ODDS</id>
+    <condition>((dice[0] + dice[1] + dice[2]) % 2) == 1 &amp;&amp; (dice[0] != dice[1] || dice[1] != dice[2])</condition>
+    <odds>1</odds>
+    <probability>0.486</probability>
+    <edge>0.028</edge>
+    <description>Wins on any odd total, except for triples.</description>
+    <region>
+      <bounds>120,60,60,60</bounds>
+      <pips>1</pips>
+    </region>
+    <region>
+      <bounds>180,60,60,60</bounds>
+      <pips>3</pips>
+    </region>
+    <region>
+      <bounds>240,60,60,60</bounds>
+      <pips>5</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>EVENS</id>
+    <condition>((dice[0] + dice[1] + dice[2]) % 2) == 0 &amp;&amp; (dice[0] != dice[1] || dice[1] != dice[2])</condition>
+    <odds>1</odds>
+    <probability>0.486</probability>
+    <edge>0.028</edge>
+    <description>Wins on any even total, except for triples.</description>
+    <region>
+      <bounds>120,120,60,60</bounds>
+      <pips>2</pips>
+    </region>
+    <region>
+      <bounds>180,120,60,60</bounds>
+      <pips>4</pips>
+    </region>
+    <region>
+      <bounds>240,120,60,60</bounds>
+      <pips>6</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_4</id>
+    <condition>dice[0] + dice[1] + dice[2] == 4</condition>
+    <odds>60</odds>
+    <probability>0.014</probability>
+    <edge>0.153</edge>
+    <description>Wins if the total of the dice is 4.</description>
+    <region>
+      <bounds>300,30,40,36</bounds>
+      <label>4</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_5</id>
+    <condition>dice[0] + dice[1] + dice[2] == 5</condition>
+    <odds>30</odds>
+    <probability>0.028</probability>
+    <edge>0.139</edge>
+    <description>Wins if the total of the dice is 5.</description>
+    <region>
+      <bounds>340,30,40,36</bounds>
+      <label>5</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_6</id>
+    <condition>dice[0] + dice[1] + dice[2] == 6</condition>
+    <odds>17</odds>
+    <probability>0.046</probability>
+    <edge>0.167</edge>
+    <description>Wins if the total of the dice is 6.</description>
+    <region>
+      <bounds>380,30,40,36</bounds>
+      <label>6</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_7</id>
+    <condition>dice[0] + dice[1] + dice[2] == 7</condition>
+    <odds>12</odds>
+    <probability>0.069</probability>
+    <edge>0.097</edge>
+    <description>Wins if the total of the dice is 7.</description>
+    <region>
+      <bounds>300,66,40,36</bounds>
+      <label>7</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_8</id>
+    <condition>dice[0] + dice[1] + dice[2] == 8</condition>
+    <odds>8</odds>
+    <probability>0.097</probability>
+    <edge>0.125</edge>
+    <description>Wins if the total of the dice is 8.</description>
+    <region>
+      <bounds>340,66,40,36</bounds>
+      <label>8</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_9</id>
+    <condition>dice[0] + dice[1] + dice[2] == 9</condition>
+    <odds>6</odds>
+    <probability>0.116</probability>
+    <edge>0.19</edge>
+    <description>Wins if the total of the dice is 9.</description>
+    <region>
+      <bounds>380,66,40,36</bounds>
+      <label>9</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_10</id>
+    <condition>dice[0] + dice[1] + dice[2] == 10</condition>
+    <odds>6</odds>
+    <probability>0.125</probability>
+    <edge>0.125</edge>
+    <description>Wins if the total of the dice is 10.</description>
+    <region>
+      <bounds>300,102,40,36</bounds>
+      <label>10</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_11</id>
+    <condition>dice[0] + dice[1] + dice[2] == 11</condition>
+    <odds>6</odds>
+    <probability>0.125</probability>
+    <edge>0.125</edge>
+    <description>Wins if the total of the dice is 11.</description>
+    <region>
+      <bounds>340,102,40,36</bounds>
+      <label>11</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_12</id>
+    <condition>dice[0] + dice[1] + dice[2] == 12</condition>
+    <odds>6</odds>
+    <probability>0.116</probability>
+    <edge>0.19</edge>
+    <description>Wins if the total of the dice is 12.</description>
+    <region>
+      <bounds>380,102,40,36</bounds>
+      <label>12</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_13</id>
+    <condition>dice[0] + dice[1] + dice[2] == 13</condition>
+    <odds>8</odds>
+    <probability>0.097</probability>
+    <edge>0.125</edge>
+    <description>Wins if the total of the dice is 13.</description>
+    <region>
+      <bounds>300,138,40,36</bounds>
+      <label>13</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_14</id>
+    <condition>dice[0] + dice[1] + dice[2] == 14</condition>
+    <odds>12</odds>
+    <probability>0.069</probability>
+    <edge>0.097</edge>
+    <description>Wins if the total of the dice is 14.</description>
+    <region>
+      <bounds>340,138,40,36</bounds>
+      <label>14</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_15</id>
+    <condition>dice[0] + dice[1] + dice[2] == 15</condition>
+    <odds>17</odds>
+    <probability>0.046</probability>
+    <edge>0.167</edge>
+    <description>Wins if the total of the dice is 15.</description>
+    <region>
+      <bounds>380,138,40,36</bounds>
+      <label>15</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_16</id>
+    <condition>dice[0] + dice[1] + dice[2] == 16</condition>
+    <odds>30</odds>
+    <probability>0.028</probability>
+    <edge>0.139</edge>
+    <description>Wins if the total of the dice is 16.</description>
+    <region>
+      <bounds>300,174,60,36</bounds>
+      <label>16</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TOTAL_17</id>
+    <condition>dice[0] + dice[1] + dice[2] == 17</condition>
+    <odds>60</odds>
+    <probability>0.014</probability>
+    <edge>0.153</edge>
+    <description>Wins if the total of the dice is 17.</description>
+    <region>
+      <bounds>360,174,60,36</bounds>
+      <label>17</label>
+      <orientation>HORIZONTAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_1</id>
+    <condition>dice[0] == 1 &amp;&amp; dice[1] == 1 &amp;&amp; dice[2] == 1</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 1.</description>
+    <region>
+      <bounds>0,230,60,60</bounds>
+      <pips>1</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_2</id>
+    <condition>dice[0] == 2 &amp;&amp; dice[1] == 2 &amp;&amp; dice[2] == 2</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 2.</description>
+    <region>
+      <bounds>0,290,60,60</bounds>
+      <pips>2</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_3</id>
+    <condition>dice[0] == 3 &amp;&amp; dice[1] == 3 &amp;&amp; dice[2] == 3</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 3.</description>
+    <region>
+      <bounds>0,350,60,60</bounds>
+      <pips>3</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_4</id>
+    <condition>dice[0] == 4 &amp;&amp; dice[1] == 4 &amp;&amp; dice[2] == 4</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 4.</description>
+    <region>
+      <bounds>60,230,60,60</bounds>
+      <pips>4</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_5</id>
+    <condition>dice[0] == 5 &amp;&amp; dice[1] == 5 &amp;&amp; dice[2] == 5</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 5.</description>
+    <region>
+      <bounds>60,290,60,60</bounds>
+      <pips>5</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>TRIPS_6</id>
+    <condition>dice[0] == 6 &amp;&amp; dice[1] == 6 &amp;&amp; dice[2] == 6</condition>
+    <odds>180</odds>
+    <probability>0.0046</probability>
+    <edge>0.162</edge>
+    <description>Wins if all dice roll a 6.</description>
+    <region>
+      <bounds>60,350,60,60</bounds>
+      <pips>6</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>NO_COME</id>
+    <condition>dice[0] == 1 &amp;&amp; dice[1] == 2 &amp;&amp; dice[2] == 3</condition>
+    <odds>30</odds>
+    <probability>0.028</probability>
+    <edge>0.129</edge>
+    <description>Wins if a 1, 2, and 3 are rolled.</description>
+    <region>
+      <bounds>120,260,60,60</bounds>
+      <pips>1</pips>
+    </region>
+    <region>
+      <bounds>180,260,60,60</bounds>
+      <pips>2</pips>
+    </region>
+    <region>
+      <bounds>240,260,60,60</bounds>
+      <pips>3</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>C_LO</id>
+    <condition>dice[0] == 4 &amp;&amp; dice[1] == 5 &amp;&amp; dice[2] == 6</condition>
+    <odds>30</odds>
+    <probability>0.028</probability>
+    <edge>0.129</edge>
+    <description>Wins if a 4, 5, and 6 are rolled.</description>
+    <region>
+      <bounds>120,320,60,60</bounds>
+      <pips>4</pips>
+    </region>
+    <region>
+      <bounds>180,320,60,60</bounds>
+      <pips>5</pips>
+    </region>
+    <region>
+      <bounds>240,320,60,60</bounds>
+      <pips>6</pips>
+    </region>
+  </wager>
+  <wager>
+    <id>UNDER</id>
+    <condition>var sum = dice[0] + dice[1] + dice[2]; sum &gt;= 4 &amp;&amp; sum &lt;= 10 &amp;&amp; (dice[0] != dice[1] || dice[1] != dice[2])</condition>
+    <odds>1</odds>
+    <probability>0.48</probability>
+    <edge>0.028</edge>
+    <description>Wins with a total between 4 and 10, inclusive, except for triples.</description>
+    <region>
+      <bounds>300,230,60,180</bounds>
+      <label>4 to 10</label>
+      <orientation>DIAGONAL</orientation>
+    </region>
+  </wager>
+  <wager>
+    <id>OVER</id>
+    <condition>var sum = dice[0] + dice[1] + dice[2]; sum &gt;= 11 &amp;&amp; sum &lt;= 17 &amp;&amp; (dice[0] != dice[1] || dice[1] != dice[2])</condition>
+    <odds>1</odds>
+    <probability>0.48</probability>
+    <edge>0.028</edge>
+    <description>Wins with a total between 11 and 17, inclusive, except for triples.</description>
+    <region>
+      <bounds>360,230,60,180</bounds>
+      <label>11 to 17</label>
+      <orientation>DIAGONAL</orientation>
+    </region>
+  </wager>
+</table>
+
+</root>

@@ -1,0 +1,68 @@
+#svg *, .noselect * {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+}
+
+#waitform {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    cursor: wait;
+    background-color: transparent;
+
+}
+
+#canvas{
+   
+    background-image: url(/images/blanktablesegment.png);
+}
+
+a {
+    color: gray;
+        background-color: transparent;
+
+}
+
+em {
+    border: none;
+    font-style: normal;
+    padding: 0px 0px;
+    background-color: transparent;
+    
+}
+
+body {
+    background-image: "smallfelt.png";
+           background-color: transparent;
+}
+
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+    margin: 0px;
+}
+
+p {
+    font-size: 80%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    background-color: transparent;
+}
+
+.control_panel {
+    padding: 15px;
+    padding-bottom: 0px;
+    position: absolute;
+    z-index: 10;
+    background-color: transparent;
+}
+#ceeloTableTop {
+
+}
+
+

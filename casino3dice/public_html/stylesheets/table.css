@@ -1,0 +1,214 @@
+/*
+
+
+ CONFIDENTIAL
+ Unpublished Copyright (c) 2012 Louis DiGioia, All Rights Reserved.
+ 
+ NOTICE: All information contained herein is, and remains the property
+ of Louis DiGioia. The intellectual and technical concepts contained
+ herein are proprietary to Louis DiGioia and may be covered by U.S. and
+ Foreign Patents, patents in process, and are protected by trade secret
+ or copyright law. Dissemination of this information or reproduction of
+ this material is strictly forbidden unless prior written permission is
+ obtained from Louis DiGioia.  Access to the source code contained herein
+ is hereby forbidden to anyone except current Louis DiGioia employees,
+ managers or contractors who have executed Confidentiality and
+ Non-disclosure agreements explicitly covering such access.
+ 
+ The copyright notice above does not evidence any actual or intended
+ publication or disclosure of this source code, which includes
+ information that is confidential and/or proprietary, and is a trade
+ secret, of Louis DiGioia.  ANY REPRODUCTION, MODIFICATION, DISTRIBUTION,
+ PUBLIC PERFORMANCE, OR PUBLIC DISPLAY OF OR THROUGH USE OF THIS SOURCE
+ CODE WITHOUT THE EXPRESS WRITTEN CONSENT OF LOUIS DIGIOIA IS STRICTLY
+ PROHIBITED, AND IN VIOLATION OF APPLICABLE LAWS AND INTERNATIONAL
+ TREATIES.  THE RECEIPT OR POSSESSION OF THIS SOURCE CODE AND/OR
+ RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS TO REPRODUCE,
+ DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL
+ ANYTHING THAT IT MAY DESCRIBE, IN WHOLE OR IN PART.
+*/
+/* 
+    Created on : Jun 5, 2017, 7:59:41 AM
+    Author     : DevAccount
+*/
+
+body
+{
+
+}
+.dicerollarea{
+    position: relative;
+    top:0px;
+    left: 500px;
+    height: 100%;
+    width: 300px;
+
+}
+
+.ceeloTableTop1{ 
+    z-index:-1;
+    position: relative}
+
+
+
+
+table.tr{
+    align-content: center;
+    z-index: 112;
+   
+}
+td{
+    align-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    
+    
+}
+
+.col1 {
+    position: absolute;
+    left: 30px;
+}
+iframe{
+    position: absolute;
+    top:-15px;
+    left:500px;
+    height: 110%;
+    border: none;
+   
+}
+
+.row2{ position: absolute;
+        top: 97px;
+           
+}
+
+.row3{ position: absolute;
+        top: 297px;
+}
+
+/*#rollbutton{
+   position: relative;
+   top: -275px;
+   left:550px;
+    z-index:2;
+}*/
+
+.flattabletop{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -2;
+ 
+       
+}
+
+#bettingchipsall{
+    position: relative;
+    top:-300px;
+    left:640px;
+    z-index: 1
+    
+    
+}
+#totalbetslabel{
+    position:relative;
+    font-size: 20px;
+        top:-425px;
+    left:170px;
+    
+}
+#totalwins{
+    position: relative;
+    top:-450px;
+    left:175px;
+}
+#totalllosses{ position: relative;
+    top:-415px;
+    left:155px;
+}
+
+#bank{
+    position:absolute;
+    top:400px;
+    left:550px;
+}
+.bankroll{
+    position:absolute;
+    top:425px;
+    left:500px;
+    align-content: center;
+    font-size: 48px;
+    font-weight: bold;
+}
+#winnerAnnounce{
+    position:relative;
+    top:-700px;
+    left:510px;
+    visibility: hidden;
+    z-index: 7;
+}
+#repeatLast{
+    position:relative;
+    top:-900px;
+    left:290px;
+    visibility: hidden;
+}
+.selectedChip{
+   border-style: dotted;
+   border-color: goldenrod;
+   
+}.bet {
+
+}
+label{
+    font-family: "Arial black";
+    font-size: 16px;
+    font-weight: bold;
+    color: goldenrod;
+    z-index:1000;
+}
+
+.dieRes {
+
+}
+
+#d0r{
+    position:absolute;
+    top:25px;
+left:500px;}
+#d1r{
+    position:absolute;
+     top:25px;
+left:575px;   
+}
+#d2r{
+    position:absolute;
+    top:25px;
+left:650px;}
+
+.span.flying{
+    position:absolute;
+    -webkit-animation-name: fly; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: 1; /* Safari 4.0 - 8.0 */
+    animation-name: fly;
+    animation-duration: 1s;
+    animation-iteration-count: 11;
+    
+    
+    
+}
+
+@-webkit-keyframes fly{
+    0%{}
+    100%{left: 575px; top:450px;}
+}
+
+@keyframes fly{
+        0%{}
+    100%{left: 575px; top:450px;}
+ 
+}
