@@ -251,7 +251,7 @@ function displayChips(chipArray, wagerIndex)
     var cspan = wagerSpan.getElementsByTagName("span")[0];
     console.log("span inner " + cspan.innerHTML);
     //  while(chips.firstElement){
-    cspan.innerHTML = "";
+   // cspan.innerHTML = "";
     //}
     var c = 0;
     var imgX = 0;
@@ -285,10 +285,9 @@ function findWager(wagerSpanID, locationx, locationy) {
 
         wagerSpan = document.createElement("div");
         wagerSpan.id = wagerSpanID;
-        wagerSpan.className = "wagerSpan";
+        wagerSpan.class = "oldBet";
         var chipSpan = document.createElement("span");
         chipSpan.id = wagerSpan.id + "cspan";
-        chipSpan.className = "cspan";
         var label = document.createElement("label");
         label.id = wagerSpan.id + "label";
         wagerSpan.style.position = "absolute";
@@ -388,19 +387,16 @@ function animateWinner(bet)
     //animate them to the bank
     //   repeat same number of times as odds
     
-    var name = "wager"+bet.regiondID;
-    console.log(name);//var wSpan = 
-  /*  
-    var wagerSpanID = "wager" + bet;
-    var wagerSpan = parent.document.getElementById(wagerSpanID);
-    var cspan = wagerSpan.getElementsByTagName("span")[0];
+  //  var wagerSpanID = "wager" + bet.regionID;
+    //var wagerSpan = parent.document.getElementById(wagerSpanID);
+   // var cspan = wagerSpan.getElementsByTagName("span")[0];
     //console.log("span inner " + cspan.innerHTML);
  
-    var startPlace = getPosition(wagerSpanID);
-    console.log("Starts at " + startPlace);
+//    var startPlace = getPosition(wagerSpanID);
+  //  console.log("Starts at " + startPlace);
     
-    var spanID = "wager" + bet;
-    var wag = parent.document.getElementById(spanID);
+    //var spanID = "wager" + bet;
+   // var wag = parent.document.getElementById(spanID);
     //wag.classList.add("flying");
     
     
@@ -464,7 +460,7 @@ function updateWinnings(betAmount)
     var winLabel = parent.document.getElementById("totalwins");
     wins = getStoredValue("wins");
     
-    winLabel.textContent = "WON:" + wins;
+    winLabel.textContent ="WON:"+ wins;
 }
 
 function updateLosses(betAmount)
@@ -535,18 +531,47 @@ function resetTable() {
      totloss.style.visibility="visible";
      updateWinnings(0);
      updateLosses(0);
-   var selfDestruct = parent.document.getElementsByClassName("wagerSpan");
-   for(i=0;i<selfDestruct.length;i++){
-       var killme = selfDestruct[i];
-       var lbl = killme.getElementsByTagName("label")[0];
-        console.log("boom" +selfDestruct.length);
-    lbl.textContent = "";
-       //selfDestruct[i].parent.removeChild(selfDestruct[i]);
-   }
+  
     
 }
 
-
+function clearChips()
+{
+    console.log("allWagers.length" + allWagers.length);
+    
+    //var chips = 
+   // var chips = parent.document.getElementsByTagName("img"); 
+    //console.log(chips.length);
+    for(i=0;i<allWagers.length;i++)
+    {   
+        var regionid =allWagers[i].regionID; 
+        var wagerSpanID = "wager" + regionid;
+        var currentWag = parent.document.getElementById("currentwagers");
+        var wagerSpan= parent.document.getElementById(wagerSpanID);
+        console.log(wagerSpanID);
+        console.log(wagerSpan);
+//        wagerSpan.style.visibility = "hidden";
+        var lbl = wagerSpan.getElementsByTagName("label")[0];
+        lbl.textContent = "";
+        //currentWag.removeChild(wagerSpan);
+        allWagers[i].currentBetAmount=0;
+        var imgs = wagerSpan.getElementsByTagName("img");
+        var count = 0;
+        for(count = 0; count<imgs.length;count++)
+        {
+            wagerSpan.removeChild(imgs[count]);
+            console.log("removed");
+        }
+        //parent.document.removeChild(wagerSpan);
+//        var parNode = wagerSpan.parent;
+  //      console.log(parNode);
+        //wagerSpan.parent.removeChild(wagerSpan);
+      //  var zapit = chips[i];
+      //  zapit.parentNode.removeChild(zapit);
+    }
+    
+   
+}
 
 function storeValue(key, value) {
     if (localStorage) {
@@ -562,19 +587,4 @@ function getStoredValue(key) {
     } else {
         return $.cookies.get(key);
     }
-}
-
-function clearChips(){
-    console.log("wagers "+ allWagers.length);
-    for(i=0;i<allWagers.length;i++)
-    {
-        allWagers[i].currentBetAmount = 0;
-        
-    }
-    var nodes = parent.document.getElementsByClassName("cspan");
-    for(i=0;i<nodes.length; i++){
-        
-        nodes[i].innerHTML="";
-    }
-    console.log("nodes" + nodes.length);
 }
