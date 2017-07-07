@@ -109,20 +109,36 @@ iframe{
     
 }
 #totalbetslabel{
-    left:200px;
+    position:relative;
+    left:210px;
+    font-size: 30px;
+color:red;
+        top:-425px;
+
+    
     
 }
 #totalwins{
-    left:275px;
+color:white;
+    position:absolute;
+    font-size: 24px;
+    top:225px;
+    left:200px;
 }
-#totalllosses{
-    left:150px;
+#totallosses{
+    left:200px;
+    color:red;
+    position:absolute;
+    font-size: 20px;
+    top:260px;
+
 }
 
 #bank{
     position:absolute;
     top:400px;
     left:550px;
+   
 }
 .bankroll{
     position:absolute;
@@ -201,12 +217,4 @@ left:650px;}
     100%{left: 575px; top:450px;}
  
 }.totalsLabel {
-font-size: 30px;
-color:red;
-    position:relative;
-    font-size: 24px;
-        top:-425px;
-    
-    
-
 }

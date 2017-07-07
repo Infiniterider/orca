@@ -68,11 +68,13 @@ function bankInit()
 }
 
 function updateCurrentBets(amount)
-{
+{if(amount>0){
+        
     totalCurrentBets += parseInt(amount);
     var lblBets = parent.document.getElementById("totalbetslabel");
     lblBets.textContent = totalCurrentBets;
-    //if(lblBets).textContent = 
+   // storeValue("Chips", totalCurrentBets);
+    } 
 }
 
 
@@ -102,9 +104,9 @@ function setChipValue(amountString)
 
 
 function placeBets(tableregion, coordx, coordy) {
-    updateBankroll(-selectedChipValue);
-    updateCurrentBets(selectedChipValue);
     if (selectedChipValue !== 0) {
+        updateBankroll(-selectedChipValue);
+        updateCurrentBets(selectedChipValue);
         workingBet = {regionID: tableregion,
             currentBetAmount: 0,
             labelX: coordx,
@@ -314,16 +316,18 @@ function displayDiceSection()
 
 function highlightChip(selectedChip, amount)
 {
-    // console.log(selectedChipValue);
     setChipValue(amount);
-    var otherchips = document.getElementsByTagName("td");
-    var chipToHighlight = document.getElementById(selectedChip);
+    var otherchips = parent.document.getElementsByTagName("td");
+    
     for (i = 0; i < otherchips.length; i++)
     {
         otherchips[i].style = "background-color:tranparent";
     }
-    chipToHighlight.style = "background-col0or: goldenrod;";
-  //  var dicePage = 
+    if(selectedChip!=="zero"){
+        
+var chipToHighlight = parent.document.getElementById(selectedChip);
+    chipToHighlight.style = "background-color: goldenrod;";
+    betStarted();}
 }
 
 function showDiceResults()
@@ -340,9 +344,23 @@ function showDiceResults()
     }
 }
 
+function hideDiceResults(){
+    var dd = parent.document.getElementById("diceResults");
+   
+    var pics = dd.getElementsByTagName("img");
+    var pic = "die";
+    for (i = 0; i < 3; i++)
+    {
+        pic = "images/diceImages/placeholder.png";
+        pics[i].src = pic;
+    }
+}
+
 function displayResults()
 {
     showDiceResults();
+
+    var uwin=false;
     var allResults = getResults();
     bankImg = parent.document.getElementById("bank");
     bankImg.style.visibility = "visible";
@@ -361,7 +379,9 @@ function displayResults()
             updateLosses(amountJ);}
         
             if (allWagers[j].regionID === allResults[i].bet) {
-                animateWinner(allWagers[j]);
+               uwin=true;
+               // animateWinner(allWagers[j]);
+               
                 //var ba = parseInt(allWagers[j].currentBetAmount);
                 var p = parseInt(allResults[i].pays);
                 //console.log(ba + " X " + p);
@@ -375,8 +395,7 @@ function displayResults()
         }
         lossRec=true;
     }
-
-    return true;
+    return uwin;
 }
 
 
@@ -416,8 +435,7 @@ function animateWinner(bet)
      //var bankSpot = parent.document.getElementById("bank");
      //var topSpot = 425;
      //var leftSpot = 550;*/
-    var ching = new Audio("media/kaching.wav");
-    ching.play();
+
     // myMove(wag);    //animate the thing
 
     //wag.parent.removeChild(wag);
@@ -516,7 +534,19 @@ function updatePosition() {
     // is resized or scrolled
 }
 
-
+function betStarted(){
+    hideDiceResults();
+    totalCurrentBets=0;
+    var totbets =  parent.document.getElementById("totalbetslabel");
+    totbets.textContent = "";
+    totbets.style.visibility="visible";
+    
+    var totwins =  parent.document.getElementById("totalwins");
+     totwins.style.visibility="hidden";
+     var totloss =  parent.document.getElementById("totallosses");
+     totloss.style.visibility="hidden";
+       
+}
 
 function resetTable() {
     clearChips();
@@ -524,23 +554,34 @@ function resetTable() {
     storeValue("diceVisible", "false");
     var dicearea = parent.document.getElementById("diceframe");
     dicearea.style.visibility = "hidden";
-    reloadIframe();
+    
     var betArea = parent.document.getElementById("playersbank");
     betArea.style.visibility = "visible";
     var totbets =  parent.document.getElementById("totalbetslabel");
     totbets.style.visibility="hidden";
+    totalCurrentBets = 0;
+    
+    totbets.textContent = "";
+    
+
+    //storeValue("Chips", totalCurrentBets);
+
      var totwins =  parent.document.getElementById("totalwins");
      totwins.style.visibility="visible";
      var totloss =  parent.document.getElementById("totallosses");
      totloss.style.visibility="visible";
      updateWinnings(0);
      updateLosses(0);
+     highlightChip("zero");
    var selfDestruct = parent.document.getElementsByClassName("wagerSpan");
    for(i=0;i<selfDestruct.length;i++){
        var killme = selfDestruct[i];
        var lbl = killme.getElementsByTagName("label")[0];
         console.log("boom" +selfDestruct.length);
     lbl.textContent = "";
+    selectedChipValue=0;
+    storeValue()
+    reloadIframe();
        //selfDestruct[i].parent.removeChild(selfDestruct[i]);
    }
     

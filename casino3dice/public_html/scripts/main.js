@@ -36,8 +36,9 @@ function dice_initialize(container) {
              allWagers = parent.getWagers();
              console.log("AW before roll" + allWagers.length);
         diceButton = document.getElementById("throw");
+        diceButton.style.visibility="hidden";
         bankarea = parent.document.getElementById("playersbank");
-                diceButton.style.visibility="hidden";
+            
         bankarea.style.visibility="hidden";
          var clatter = new Audio("media/diceroll2.wav");
         clatter.play();
@@ -58,7 +59,12 @@ function dice_initialize(container) {
         
        // showPostRoll();
      //  setBA(bankAmount);
-     displayResults();
+     var winlose = displayResults();
+     console.log(winlose);
+     if(winlose===true){
+                 var ching = new Audio("media/kaching.wav");
+                 ching.play();
+     }
        resetTable();
   //      if (displayResults() === true){
             
