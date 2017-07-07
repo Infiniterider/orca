@@ -117,7 +117,7 @@
                 <!--<area id="pair2" alt="Pair of 2s" title="Pair of 2s" shape="poly" coords="25,87,89,87,89,151,25,151"  href = "#"    />-->
             </map>
         </div>
-        <iframe id="diceframe" width="400" height="500" src="dicepage.html"></iframe>
+        <iframe id="diceframe" width="400" height="500" src="dicepage.html" style = "visibility: hidden;"></iframe>
 
         <div id ="playersbank">
             <table id="bettingchipsall"><tr>
@@ -140,9 +140,10 @@
                     <td id="chip1000td">
                         <input type= "image"  src="images/chips/1000chip.png" alt="1000"  id="chip1000" onclick="highlightChip('chip1000td', 1000)"/></td></tr></table>
             <img src="images/bankchips.png" alt="" id="bank"/> 
-            <label id = "bankroll" class ="bankroll">10000000</label>                
-        </div>
-        <div id ="totalBets"><label id ="totalbetslabel">tb</label><label id ="totalwins">TW</label><label id = "totalllosses">TL</label></div>
+             <label id = "bankroll" class ="bankroll">0</label>                
+       </div>
+        
+        <div id ="totalBets"><label id ="totalbetslabel">tb</label><label id ="totalwins"></label><label id = "totallosses"></label></div>
         
         <div id="afterRoll">
             <img id = "winnerAnnounce" src="images/winner.png" alt=""/>
@@ -153,12 +154,18 @@
             <img class ="dieRes" id = "d0r" src="images/diceImages/placeholder.png" alt=""/>
             <img class ="dieRes" id = "d1r" src="images/diceImages/placeholder.png" alt=""/>
             <img class ="dieRes" id = "d2r" src="images/diceImages/placeholder.png" alt=""/>
-            <!-- <img class ="dieRes" id = "d0r" src="images/diceImages/die4.png" alt=""/>
+            <!--<img class ="dieRes" id = "d0r" src="images/diceImages/die4.png" alt=""/>
             <img class ="dieRes" id = "d1r" src="images/diceImages/die5.png" alt=""/>
             <img class ="dieRes" id = "d2r" src="images/diceImages/die6.png" alt=""/>-->
               
             
         </div>
+                <script type="text/javascript"> 
+                    
+                        bankInit();
+                    
+                </script>
+                
 
     </body>
 </html>

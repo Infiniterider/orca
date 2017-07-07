@@ -1,6 +1,7 @@
 "use strict";
 var diceButton;
 var bankarea;
+var bankAmount;
 function dice_initialize(container) {
     //$t.remove($t.id('loading_text'));
 
@@ -29,6 +30,9 @@ function dice_initialize(container) {
         // do here rpc call or whatever to get your own result of throw.
         // then callback with array of your result, example:
          //callback([4, 5, 6]); // for testing only.
+             
+            // bankAmount = getBA();
+            // console.log("Wala wala "+ bankAmount);
              allWagers = parent.getWagers();
              console.log("AW before roll" + allWagers.length);
         diceButton = document.getElementById("throw");
@@ -53,11 +57,13 @@ function dice_initialize(container) {
                 (result.reduce(function(s, a) { return s + a; }) + notation.constant);
         
        // showPostRoll();
+     //  setBA(bankAmount);
+     displayResults();
        resetTable();
-        if (displayResults() === true){
+  //      if (displayResults() === true){
             
-        console.log("complete");}
-          //reloadIframe();}
+//        console.log("complete");}
+         // reloadIframe();}
          //var m = $t.dices.
       //  var d = $t.dice.
        

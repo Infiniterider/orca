@@ -31,22 +31,46 @@ var selectedChipValue = 0;
 //create a globally accessible array of pairs that can include all of the wager table segents, and the current bet.
 //
 var allWagers = [];
+var wins;
+
 
 var workingBet;
-var bankLabel;
+var bankLabel = parent.document.getElementById("bankroll");
 var bankImg;
-var bankAccount = 10000000;
-var totalCurrentBets = 0;
+var bankAccount;
+//var diceVisible;
 
+
+function getBA() {
+    return bankAccount;
+}
+function setBA(amount) {
+    bankAccount = parseInt(amount);
+}
+var totalCurrentBets = parseInt(0);
 
 function getWagers() {
     return allWagers;
 }
+
+function bankInit()
+{   //bankAccount = parseInt(0);
+    //setBA(0);//bankAccount = 0;
+   // console.log("bankInit fired");
+    bankLabel = parent.document.getElementById("bankroll");
+    storeValue("Chips", 20000);
+    updateBankroll(0);
+    bankLabel.style.visibility = "visible";
+    storeValue("diceVisible","false");
+    wins=0;
+    storeValue("wins", 0);
+}
+
 function updateCurrentBets(amount)
 {
-    totalCurrentBets += amount;
+    totalCurrentBets += parseInt(amount);
     var lblBets = parent.document.getElementById("totalbetslabel");
-    lblBets.textContent = "Total bets: "+ totalCurrentBets;
+    lblBets.textContent = "Total bets: " + totalCurrentBets;
     //if(lblBets).textContent = 
 }
 
@@ -54,13 +78,20 @@ function updateCurrentBets(amount)
 function updateBankroll(change) {
 //updates the players bank to reflect the current amount in their bank account
 //phase2: change bank chip image to reflect chips in bank? Maybe
-
-    bankLabel = parent.document.getElementById("bankroll");
-    var total = bankAccount + change;
-    bankAccount = total;
-    bankLabel.textContent = bankAccount;
     
+   // console.log("updateBankroll fired");
+   // console.log("bank is " + getBA());
+    bankLabel = parent.document.getElementById("bankroll");
+    var bankChips = getStoredValue("Chips");
+    
+    var total = parseInt(bankChips) + parseInt(change);
+    // var total = getBA() + change;
+    //bankAccount = parseInt(total);
+   // console.log("Total is " + total);
 
+ //   setBA(total);
+ storeValue("Chips", total);
+    bankLabel.textContent = total;//bankAccount;
 }
 function setChipValue(amountString)
 {   //defaults to one
@@ -68,12 +99,6 @@ function setChipValue(amountString)
     window.selectedChipValue = amount;
 }
 
-function repeatBets()
-{
-    //don't clear the old wagers array out and
-    //redo the steps to display the images
-    //and the amounts.
-}
 
 function placeBets(tableregion, coordx, coordy) {
     updateBankroll(-selectedChipValue);
@@ -106,16 +131,24 @@ function placeBets(tableregion, coordx, coordy) {
         var allChips = findChip(amountToShow);
 
         displayChips(allChips, betIndex);
-
+        var diceVisible = getStoredValue("diceVisible");
+       // console.log("Dice Visibility = "+ diceVisible);
+        if(diceVisible ==="false"){
+        displayDiceSection();
+        }
+        diceVisible = getStoredValue("diceVisible");
+       // console.log("Dice Visibility now = "+ diceVisible);
     }//end outer if
 }
 
 
-function reloadIframe(){
-    var frame = parent.document.getElementById('diceframe'); 
-            
+function reloadIframe() {
+    var frame = parent.document.getElementById('diceframe');
+
     var source = frame.src;
     frame.src = source;
+    storeValue("diceVisible", "false");
+    
 }
 
 function raiseBet(index, raiseAmount)
@@ -156,7 +189,7 @@ function findChip(betAmount) {
     var chip;
     var allChips = [];
     var runningTotal = betAmount;
-    console.log("start " + runningTotal);
+   // console.log("start " + runningTotal);
     while (runningTotal > 0)
     {
         if (runningTotal <= 4) {
@@ -196,9 +229,9 @@ function findChip(betAmount) {
             chip = "1000small.png";
         }
         allChips.push(chip);
-        console.log("minus" + minus);
+        //console.log("minus" + minus);
         runningTotal = runningTotal - minus;
-        console.log("total " + runningTotal);
+       // console.log("total " + runningTotal);
     }
     return allChips;
 }
@@ -221,17 +254,17 @@ function displayChips(chipArray, wagerIndex)
     //}
     var c = 0;
     var imgX = 0;
-     for (c = 0; c < chipArray.length; c++) {
+    for (c = 0; c < chipArray.length; c++) {
         var chipImg = document.createElement("img");
         chipImg.src = "images/chips/" + chipArray[c];
         //this style thing still isn't working but keep going
-        console.log("id is " +wagerSpan.id);
+    //    console.log("id is " + wagerSpan.id);
         if (wagerSpan.id.indexOf("total") === -1) {
             chipImg.style = "position: relative; left:" + imgX + ";";
         } else {
             chipImg.style = "position: absolute; left:" + imgX + ";";
         }
-       // console.log(chipImg.src);
+        // console.log(chipImg.src);
         cspan.appendChild(chipImg);
         imgX = parseInt(imgX + 5);
     }
@@ -269,8 +302,11 @@ function findWager(wagerSpanID, locationx, locationy) {
 
 
 function displayDiceSection()
-{
-
+{ 
+    storeValue("diceVisible" , "true");
+    var dframe = parent.document.getElementById("diceframe");
+    dframe.style.visibility = "visible";
+   
 }
 
 function highlightChip(selectedChip, amount)
@@ -283,7 +319,8 @@ function highlightChip(selectedChip, amount)
     {
         otherchips[i].style = "background-color:tranparent";
     }
-    chipToHighlight.style = "background-color: goldenrod;";
+    chipToHighlight.style = "background-col0or: goldenrod;";
+  //  var dicePage = 
 }
 
 function showDiceResults()
@@ -293,16 +330,16 @@ function showDiceResults()
     //console.log(dd.toString());
     var pics = dd.getElementsByTagName("img");
     var pic = "die";
-            for(i=0; i< 3; i++)
-            {
-                pic = "images/diceImages/die" + rd[i] + ".png";
-                pics[i].src = pic;
-        }
+    for (i = 0; i < 3; i++)
+    {
+        pic = "images/diceImages/die" + rd[i] + ".png";
+        pics[i].src = pic;
+    }
 }
 
 function displayResults()
 {
-   showDiceResults();
+    showDiceResults();
     var allResults = getResults();
     bankImg = parent.document.getElementById("bank");
     bankImg.style.visibility = "visible";
@@ -314,17 +351,27 @@ function displayResults()
         for (j = 0; j < allWagers.length; j++)
         {
             if (allWagers[j].regionID === allResults[i].bet) {
-               
+
                 animateWinner(allWagers[j].regionID);
-              var moola = allWagers[j].currentBetAmount * allResults[i].pays;
-              console.log("pays" + moola);
-              updateBankroll(moola);
+                var ba = parseInt(allWagers[j].currentBetAmount);
+
+                var p = parseInt(allResults[i].pays);
+                console.log(ba + " X " + p);
+                var moola = ba * p; //allWagers[j].currentBetAmount * allResults[i].pays;
+                console.log("pays" + moola);
+                updateBankroll(parseInt(moola));
+                updateWinnings(moola);
+                
+            }
+            else{
+                var ba = parseInt(allWagers[j].currentBetAmount);
+                updateLosses(ba);
             }
         }
     }
-    
-    
-return true;
+
+
+    return true;
 }
 
 
@@ -335,94 +382,160 @@ function animateWinner(bet)
     //grab the chips
     //animate them to the bank
     //   repeat same number of times as odds
-
-    var spanID = "wager"+bet;
+    
+    var wagerSpanID = "wager" + bet;
+    var wagerSpan = parent.document.getElementById(wagerSpanID);
+    var cspan = wagerSpan.getElementsByTagName("span")[0];
+    //console.log("span inner " + cspan.innerHTML);
+ 
+    var startPlace = getPosition(wagerSpanID);
+    console.log("Starts at " + startPlace);
+    
+    var spanID = "wager" + bet;
     var wag = parent.document.getElementById(spanID);
-    wag.classList.add("flying");
+    //wag.classList.add("flying");
+    
+    
     //wag.classList.add("flyDown");
-    
- /*   var targetChips = "wager" + bet + "cspan";
-    var winner = parent.document.getElementById(targetChips);
-    var flyers = winner.getElementsByTagName("img");
-    
-    console.log("length " + +-flyers.length);
-    var b = flyers.length-1;
-    var c;
-    //var bankSpot = parent.document.getElementById("bank");
-    //var topSpot = 425;
-    //var leftSpot = 550;*/
-       var ching = new Audio("media/kaching.wav");
-   ching.play();
+
+    /*   var targetChips = "wager" + bet + "cspan";
+     var winner = parent.document.getElementById(targetChips);
+     var flyers = winner.getElementsByTagName("img");
+     
+     console.log("length " + +-flyers.length);
+     var b = flyers.length-1;
+     var c;
+     //var bankSpot = parent.document.getElementById("bank");
+     //var topSpot = 425;
+     //var leftSpot = 550;*/
+    var ching = new Audio("media/kaching.wav");
+    ching.play();
     // myMove(wag);    //animate the thing
 
     //wag.parent.removeChild(wag);
-      //  ching.play();
- 
-   // console.log(bet);
-   // console.log(flyers);
+    //  ching.play();
+
+    // console.log(bet);
+    // console.log(flyers);
 }
 
 function myMove(elem) {
-  //var elem = document.getElementById("animate");   
-  var id = setInterval(frame, 1);
-  var startPlace = getPosition(elem);
-  var endPlace = getPosition(bankImg);
-  
-  var lpos=startPlace.y;
-  var tpos = startPlace.x;
-  
-  function frame() {
-    if (tpos >= endPlace.y && lpos === endPlace.x) {
-      clearInterval(id);
-      elem.style = "display:none;";
-      //parent.document.removeChild(elem);
-    } else {
-      tpos+= 3;//tInt;
-      lpos+= 3;//lInt;
-      if(tpos <=endPlace.y){
-      elem.style.top = tpos + 'px';} 
-        if(lpos<=endPlace.x){
-      elem.style.left = lpos + 'px'; }
+    //var elem = document.getElementById("animate");   
+    var id = setInterval(frame, 1);
+    var startPlace = getPosition(elem);
+    //console.log(startPlace);
+    
+    var endPlace = getPosition(bankImg);
+
+    var lpos = startPlace.y;
+    var tpos = startPlace.x;
+
+    function frame() {
+        if (tpos >= endPlace.y && lpos === endPlace.x) {
+            clearInterval(id);
+            elem.style = "display:none;";
+            //parent.document.removeChild(elem);
+        } else {
+            tpos += 3;//tInt;
+            lpos += 3;//lInt;
+            if (tpos <= endPlace.y) {
+                elem.style.top = tpos + 'px';
+            }
+            if (lpos <= endPlace.x) {
+                elem.style.left = lpos + 'px';
+            }
+        }
     }
-  }
 }
+
+function updateWinnings(betAmount)
+{
+    var wins = getStoredValue("wins");
+    var newWins =  parseInt(wins) + parseInt(betAmount);
+    storeValue("wins", newWins);
+    var winLabel = parent.document.getElementById("totalwins");
+    wins = getStoredValue("wins");
+    
+    winLabel.textContent = "Winnings:" + wins;
+}
+
+function updateLosses(betAmount)
+{
+    var loss = getStoredValue("losses");
+    var newLoss =  parseInt(loss) + parseInt(betAmount);
+    storeValue("losses", newLoss);
+    var lossLabel = parent.document.getElementById("totallosses");
+    loss = getStoredValue("losses");
+    
+    lossLabel.textContent = "Losses:" + loss;
+}
+
+
+
 // Helper function to get an element's exact position
 function getPosition(el) {
-  var xPos = 0;
-  var yPos = 0;
- 
-  while (el) {
-    if (el.tagName == "BODY") {
-      // deal with browser quirks with body/window/document and page scroll
-      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-      var yScroll = el.scrollTop || document.documentElement.scrollTop;
- 
-      xPos += (el.offsetLeft - xScroll + el.clientLeft);
-      yPos += (el.offsetTop - yScroll + el.clientTop);
-    } else {
-      // for all other non-BODY elements
-      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    var xPos = 0;
+    var yPos = 0;
+
+    while (el) {
+        if (el.tagName == "BODY") {
+            // deal with browser quirks with body/window/document and page scroll
+            var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+            var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+            xPos += (el.offsetLeft - xScroll + el.clientLeft);
+            yPos += (el.offsetTop - yScroll + el.clientTop);
+        } else {
+            // for all other non-BODY elements
+            xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+            yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+        }
+
+        el = el.offsetParent;
     }
- 
-    el = el.offsetParent;
-  }
-  return {
-    x: xPos,
-    y: yPos
-  };
+    return {
+        x: xPos,
+        y: yPos
+    };
 }
- 
+
 // deal with the page getting resized or scrolled
 window.addEventListener("scroll", updatePosition, false);
 window.addEventListener("resize", updatePosition, false);
- 
+
 function updatePosition() {
-  // add your code to update the position when your browser
-  // is resized or scrolled
+    // add your code to update the position when your browser
+    // is resized or scrolled
 }
 
+
+
 function resetTable() {
+    //storeValue("seeDice", "false");
+    storeValue("diceVisible", "false");
     var dicearea = parent.document.getElementById("diceframe");
-    dicearea.style = "display:none;";
+    dicearea.style.visibility = "hidden";
+    reloadIframe();
+    var betArea = parent.document.getElementById("playersbank");
+    betArea.style.visibility = "visible";
+  
+    
+}
+
+
+
+function storeValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+    } else {
+        $.cookies.set(key, value);
+    }
+}
+
+function getStoredValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } else {
+        return $.cookies.get(key);
+    }
 }

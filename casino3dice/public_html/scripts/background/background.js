@@ -34,6 +34,11 @@ var odds = [];
 
 var allWinningBets = [];
 var runningTotal;
+
+
+
+
+
 function retrieveDiceValues()
 {
     d.sort();
@@ -154,7 +159,7 @@ function addWinnings(bet){
 function postWinnings()
 {   //winnerBanner.style.visibility="visible"; 
     for(i=0;i<allWinningBets.length; i++){
-        
+        console.log("length of winnings "+i);
     }
     
 }
