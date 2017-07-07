@@ -89,12 +89,7 @@ iframe{
         top: 297px;
 }
 
-/*#rollbutton{
-   position: relative;
-   top: -275px;
-   left:550px;
-    z-index:2;
-}*/
+
 
 .flattabletop{
     position: absolute;
@@ -114,20 +109,14 @@ iframe{
     
 }
 #totalbetslabel{
-    position:relative;
-    font-size: 20px;
-        top:-425px;
-    left:170px;
+    left:200px;
     
 }
 #totalwins{
-    position: relative;
-    top:-450px;
-    left:175px;
+    left:275px;
 }
-#totalllosses{ position: relative;
-    top:-415px;
-    left:155px;
+#totalllosses{
+    left:150px;
 }
 
 #bank{
@@ -211,4 +200,13 @@ left:650px;}
         0%{}
     100%{left: 575px; top:450px;}
  
+}.totalsLabel {
+font-size: 30px;
+color:red;
+    position:relative;
+    font-size: 24px;
+        top:-425px;
+    
+    
+
 }
