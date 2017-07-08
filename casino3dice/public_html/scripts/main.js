@@ -2,6 +2,7 @@
 var diceButton;
 var bankarea;
 var bankAmount;
+
 function dice_initialize(container) {
     //$t.remove($t.id('loading_text'));
 
@@ -16,12 +17,12 @@ function dice_initialize(container) {
 
 
 //set width of dice area here
-    var box = new $t.dice.dice_box(canvas, { w: 300, h: 500});
+    var box = new $t.dice.dice_box(canvas, { w: 300, h: 700});
     box.animate_selector = false;
     $t.bind(window, 'resize', function() {
         canvas.style.width = window.innerWidth + 'px';
         canvas.style.height = window.innerHeight + 'px';
-        box.reinit(canvas, { w: 300, h: 500 });
+        box.reinit(canvas, { w: 300, h: 700 });
     });
 
     function before_roll(vectors, notation, callback) {
@@ -38,8 +39,13 @@ function dice_initialize(container) {
         diceButton = document.getElementById("throw");
         diceButton.style.visibility="hidden";
         bankarea = parent.document.getElementById("playersbank");
-            
-        bankarea.style.visibility="hidden";
+                bankarea.style.visibility="hidden";
+            var  bankLabel = bankarea.getElementsByTagName("label")[0];
+            var bankImg = bankarea.getElementsByTagName("img")[0];
+            ////var bankLabel = bankarea.getElementById("bankroll");
+            bankLabel.style.visibility = "hidden";
+             bankImg.style.visibility = "hidden";
+
          var clatter = new Audio("media/diceroll2.wav");
         clatter.play();
         callback(getDValues());

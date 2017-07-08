@@ -557,6 +557,10 @@ function resetTable() {
     
     var betArea = parent.document.getElementById("playersbank");
     betArea.style.visibility = "visible";
+    var  bankLabel = bankarea.getElementsByTagName("label")[0];
+            bankLabel.style.visibility = "visible";
+             var bankImg = bankarea.getElementsByTagName("img")[0];
+             bankImg.style.visibility = "visible";
     var totbets =  parent.document.getElementById("totalbetslabel");
     totbets.style.visibility="hidden";
     totalCurrentBets = 0;
