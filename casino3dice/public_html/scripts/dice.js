@@ -157,6 +157,8 @@
             var ts = calc_texture_size(size + size * 2 * margin) * 2;
             canvas.width = canvas.height = ts;
             context.font = ts / (1 +1 * margin) + "pt dPoly Block Dice";
+         //    context.font = ts / (1 +1 * margin) + "pt F54eojoeld";
+            //console.log(context.font);
             context.fillStyle = back_color;
             context.fillRect(0, 0, canvas.width, canvas.height);
             context.textAlign = "center";
