@@ -2,7 +2,7 @@
 var diceButton;
 var bankarea;
 var bankAmount;
-
+var tutorialOn;
 function dice_initialize(container) {
     //$t.remove($t.id('loading_text'));
 
@@ -44,13 +44,21 @@ function dice_initialize(container) {
             var bankImg = bankarea.getElementsByTagName("img")[0];
             ////var bankLabel = bankarea.getElementById("bankroll");
             bankLabel.style.visibility = "hidden";
-             bankImg.style.visibility = "hidden";
+            bankImg.style.visibility = "hidden";
 
          var clatter = new Audio("media/diceroll2.wav");
         clatter.play();
-        callback(getDValues());
+        var tutOn = getStoredValue("tutorialSteps");
+        console.log("step " + tutOn);
+        //tutorialOn = parseInt(tutOn);
+       // console.log(tutorialOn);
+        if(tutOn === "7"){
+            callback(tutorialService());
+        }
+        else{
+                callback(getDValues());
         
-        
+        }
     }
 
     function notation_getter() {

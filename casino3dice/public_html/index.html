@@ -146,12 +146,18 @@
              <label id = "bankroll" class ="bankroll">0</label>                
        </div>
         
-        <div id ="totalBets"><label id ="totalbetslabel" class="totalsLabel">TB</label><label id ="totalwins" class="totalsLabel">TW</label><label id = "totallosses" class="totalsLabel">TL</label></div>
+        <div id ="totalBets"><label id ="totalbetslabel" class="totalsLabel"></label><label id ="totalwins" class="totalsLabel"></label><label id = "totallosses" class="totalsLabel"></label></div>
         
         <div id="afterRoll">
             <img id = "winnerAnnounce" src="images/winner.png" alt=""/>
             <img id = "repeatLast" src="images/repetlastbet.png" alt=""/>
         </div>
+        <div id ="tutorialElements"><label id = "tutlabel">Welcome to Casino 3 Dice- the new and exciting dice game!<br>Click 'Next' to learn how to play!</label><br><button onclick = "tutorial()">Next</button><button onclick="skipTutorial()">Skip Tutorial</button></div>
+        <div id="arrows">
+            <img style = "position:absolute; top:155px; left:650px; z-index:300; visibility:hidden;" id = "arrow1" src="images/tutorial/arrow1.png" alt=""/>
+            <img style = "position:absolute; top:190px; left:575px; z-index:300; visibility:hidden;" id = "arrow2" src="images/tutorial/arrow2.png" alt=""/>
+            
+        </div>      
 
         <div id ="diceResults">
             <img class ="dieRes" id = "d0r" src="images/diceImages/placeholder.png" alt=""/>

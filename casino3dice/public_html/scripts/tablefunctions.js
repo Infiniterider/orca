@@ -57,6 +57,7 @@ function bankInit()
 {   //bankAccount = parseInt(0);
     //setBA(0);//bankAccount = 0;
    // console.log("bankInit fired");
+   storeValue("tutorialSteps", 0);
     bankLabel = parent.document.getElementById("bankroll");
     storeValue("Chips", 20000);
     updateBankroll(0);
@@ -534,6 +535,70 @@ function updatePosition() {
     // is resized or scrolled
 }
 
+function skipTutorial()
+{
+    storeValue("tutorialSteps", 10);
+    tutorial();
+}
+
+function tutorial()
+{//retrieve steps of tutorial from storage
+   console.log("tutorial started");
+   var arrow1 = parent.document.getElementById("arrow1");
+      var arrow2 = parent.document.getElementById("arrow2");
+
+var tutext; 
+    var s =getStoredValue("tutorialSteps");
+    var steps = parseInt(s);
+    console.log(steps);
+    switch(steps){
+        case 0: tutext = "This is the Casino 3 Dice board. On the left are the betting regions, which correspond to the values rolled on the dice. If you hover the mouse over the bets, you'll see information on odds, and potential winnings!";
+            break;
+        case 1: tutext = "This is your bankroll. It shows how many chips you have to bet.";
+            arrow1.style.visibility = "visible";
+            break;
+        case 2: tutext = "This shows the different chip denominations available to you. Click on a chip to start placing bets. Let's go big, and start with 250!"; 
+            arrow1.style.visibility = "hidden";
+            //arrow1.style = "display:none;";
+             arrow2.style.visibility = "visible";
+            break;
+        case 3:
+            arrow2.style = "display:none;";
+            
+            tutext = "Now let's place a bet. Place your chips on the table by clicking or tapping the roll you want to bet on.\n\
+ I've got a good feeling about triple 6, so let's start there.";
+            break;
+        case 4:
+            tutext = "Your bet is shown right on the table. Every time you click on this section of the table, the bet will increase. Click again to raise the bet to 500.";
+            break;
+
+        case 5:  
+            tutext = "The total of all your bets will appear here."
+
+            break;
+        case 6: tutext = "Click here to roll the dice."; 
+            break;
+        
+        case 7:
+            tutext = "This shows you what you rolled. Trile sixes- well done!"; 
+            break;
+        
+        case 8:
+            tutext = "Your bankroll will be updated with your winnings and losses."; 
+            break;
+        
+        case 9: tutext = "Now you know how easy it is to win at Casino 3 Dice! Have fun, and good luck!"
+
+        case 10:
+            var t = parent.document.getElementById("tutorialElements");
+            t.style = "display:none;"
+    }//end switch
+    var tutLbl = parent.document.getElementById("tutlabel");
+tutLbl.textContent = tutext;
+steps = steps +1;
+storeValue("tutorialSteps", steps);
+}
+
 function betStarted(){
     hideDiceResults();
     totalCurrentBets=0;
@@ -584,7 +649,7 @@ function resetTable() {
         console.log("boom" +selfDestruct.length);
     lbl.textContent = "";
     selectedChipValue=0;
-    storeValue()
+  //  storeValue()
     reloadIframe();
        //selfDestruct[i].parent.removeChild(selfDestruct[i]);
    }

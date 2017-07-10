@@ -62,7 +62,12 @@ function getDValues()
    d.sort();
     return d;
 }
-
+function tutorialService()
+{
+    d=[6,6,6];
+//        allResults = [];
+    return d;
+}
 function getResults() {
 allResults = [];
     var betName;
