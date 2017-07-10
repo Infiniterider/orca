@@ -60,7 +60,7 @@ function bankInit()
    // console.log("bankInit fired");
    storeValue("tutorialSteps", 0);
     bankLabel = parent.document.getElementById("bankroll");
-    storeValue("Chips", 20000);
+    storeValue("Chips", 500);
     updateBankroll(0);
     bankLabel.style.visibility = "visible";
     storeValue("diceVisible","false");
@@ -71,7 +71,7 @@ function bankInit()
 
 function updateCurrentBets(amount)
 {if(amount>0){
-        totalCurrentBets = parseInt(getStoredValue("bets"));
+    totalCurrentBets = parseInt(getStoredValue("bets"));
     totalCurrentBets += parseInt(amount);
     var lblBets = parent.document.getElementById("totalbetslabel");
     lblBets.textContent = totalCurrentBets;
@@ -90,12 +90,14 @@ function updateBankroll(change) {
     var bankChips = getStoredValue("Chips");
     
     var total = parseInt(bankChips) + parseInt(change);
-    // var total = getBA() + change;
-    //bankAccount = parseInt(total);
-   // console.log("Total is " + total);
-
- //   setBA(total);
+    
+ if(total<0){ total=parseInt(0);
+ highlightChip("zero");
+ selectedChipValue = parseInt(0);
+     }
  storeValue("Chips", total);
+ 
+ 
     bankLabel.textContent = total;//bankAccount;
 }
 function setChipValue(amountString)
