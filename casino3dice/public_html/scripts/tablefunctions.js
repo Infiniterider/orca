@@ -48,6 +48,7 @@ function setBA(amount) {
     bankAccount = parseInt(amount);
 }
 var totalCurrentBets = parseInt(0);
+storeValue("bets",totalCurrentBets);
 
 function getWagers() {
     return allWagers;
@@ -70,11 +71,11 @@ function bankInit()
 
 function updateCurrentBets(amount)
 {if(amount>0){
-        
+        totalCurrentBets = parseInt(getStoredValue("bets"));
     totalCurrentBets += parseInt(amount);
     var lblBets = parent.document.getElementById("totalbetslabel");
     lblBets.textContent = totalCurrentBets;
-   // storeValue("Chips", totalCurrentBets);
+    storeValue("bets", totalCurrentBets);
     } 
 }
 
@@ -588,7 +589,7 @@ var tutext;
             break;
         
         case 9: tutext = "Now you know how easy it is to win at Casino 3 Dice! Have fun, and good luck!"
-
+        break;
         case 10:
             var t = parent.document.getElementById("tutorialElements");
             t.style = "display:none;"
@@ -601,7 +602,7 @@ storeValue("tutorialSteps", steps);
 
 function betStarted(){
     hideDiceResults();
-    totalCurrentBets=0;
+    //totalCurrentBets=0;
     var totbets =  parent.document.getElementById("totalbetslabel");
     totbets.textContent = "";
     totbets.style.visibility="visible";
@@ -629,11 +630,11 @@ function resetTable() {
     var totbets =  parent.document.getElementById("totalbetslabel");
     totbets.style.visibility="hidden";
     totalCurrentBets = 0;
-    
+    storeValue("bets",0);
     totbets.textContent = "";
     
 
-    //storeValue("Chips", totalCurrentBets);
+    storeValue("bets", totalCurrentBets);
 
      var totwins =  parent.document.getElementById("totalwins");
      totwins.style.visibility="visible";
